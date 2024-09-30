@@ -7,6 +7,19 @@ from xml.dom.minidom import parseString
 # Icon prefix in Home Assistant
 ICONS_PREFIX = "custom"
 
+# Path to the 'icon-svg' directory
+directory = os.path.join("icon-svg")
+
+# Walk through the directory
+for root, dirs, files in os.walk(directory):
+    for file in files:
+        if file == ".DS_Store":
+            file_path = os.path.join(root, file)
+            try:
+                os.remove(file_path)
+                print(f"Deleted: {file_path}")
+            except Exception as e:
+                print(f"Error deleting {file_path}: {e}")
 
 def circle_to_path(circle):
     # Convert circle to path https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/
